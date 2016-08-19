@@ -1,107 +1,308 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>HeyNiu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Fiddler保存会话（请求）
-Fiddler下载地址
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Fiddler下载地址
 
 为什么要保存请求？做这件事最重要的目的之一就是，最近我需要实现一个简单的验证服务器接口正确性的这么一个测试工具（脚本），顺便把这（保存会话）记录下来分享给大家。
-有时间我会把我初步的想法整理好分享出来，大家一起来探讨它的可行性，它不一定适用你们的业务，但是非常适合我项目的业务。虽然它也可能难产，但是我想尽力去做、去完成，也算巩固一下自己的知">
+有时间我会把我初步的想法整理好分享出来，大家一起来探讨它的可行性，它不一定适用你们的业务，但是非常适合我项目的业务。虽然它也可能难产，但是我想尽力去做、去完成，也算巩固一下自己的知识，应用到项目中去。
+保存单个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HeyNiu">
+<meta property="og:title" content="Fiddler保存会话（请求）">
 <meta property="og:url" content="http://yoursite.com/2016/08/19/Fiddler保存会话（请求）/index.html">
 <meta property="og:site_name" content="HeyNiu">
-<meta property="og:description" content="Fiddler保存会话（请求）
-Fiddler下载地址
+<meta property="og:description" content="Fiddler下载地址
 
 为什么要保存请求？做这件事最重要的目的之一就是，最近我需要实现一个简单的验证服务器接口正确性的这么一个测试工具（脚本），顺便把这（保存会话）记录下来分享给大家。
-有时间我会把我初步的想法整理好分享出来，大家一起来探讨它的可行性，它不一定适用你们的业务，但是非常适合我项目的业务。虽然它也可能难产，但是我想尽力去做、去完成，也算巩固一下自己的知">
-<meta property="og:image" content="http://yoursite.com/./single session.png">
-<meta property="og:image" content="http://yoursite.com/./post.png">
-<meta property="og:image" content="http://yoursite.com/./get.png">
-<meta property="og:image" content="http://yoursite.com/./decode.png">
-<meta property="og:image" content="http://yoursite.com/./not decode.png">
-<meta property="og:image" content="http://yoursite.com/./save all sessions.png">
-<meta property="og:image" content="http://yoursite.com/./session.png">
-<meta property="og:updated_time" content="2016-07-21T06:18:02.808Z">
+有时间我会把我初步的想法整理好分享出来，大家一起来探讨它的可行性，它不一定适用你们的业务，但是非常适合我项目的业务。虽然它也可能难产，但是我想尽力去做、去完成，也算巩固一下自己的知识，应用到项目中去。
+保存单个">
+<meta property="og:image" content="http://yoursite.com/images/single session.png">
+<meta property="og:image" content="http://yoursite.com/images/post.png">
+<meta property="og:image" content="http://yoursite.com/images/get.png">
+<meta property="og:image" content="http://yoursite.com/images/decode.png">
+<meta property="og:image" content="http://yoursite.com/images/not decode.png">
+<meta property="og:image" content="http://yoursite.com/images/save all sessions.png">
+<meta property="og:image" content="http://yoursite.com/images/session.png">
+<meta property="og:updated_time" content="2016-08-19T08:18:32.691Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HeyNiu">
-<meta name="twitter:description" content="Fiddler保存会话（请求）
-Fiddler下载地址
+<meta name="twitter:title" content="Fiddler保存会话（请求）">
+<meta name="twitter:description" content="Fiddler下载地址
 
 为什么要保存请求？做这件事最重要的目的之一就是，最近我需要实现一个简单的验证服务器接口正确性的这么一个测试工具（脚本），顺便把这（保存会话）记录下来分享给大家。
-有时间我会把我初步的想法整理好分享出来，大家一起来探讨它的可行性，它不一定适用你们的业务，但是非常适合我项目的业务。虽然它也可能难产，但是我想尽力去做、去完成，也算巩固一下自己的知">
-<meta name="twitter:image" content="http://yoursite.com/./single session.png">
-  
-    <link rel="alternate" href="/atom.xml" title="HeyNiu" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+有时间我会把我初步的想法整理好分享出来，大家一起来探讨它的可行性，它不一定适用你们的业务，但是非常适合我项目的业务。虽然它也可能难产，但是我想尽力去做、去完成，也算巩固一下自己的知识，应用到项目中去。
+保存单个">
+<meta name="twitter:image" content="http://yoursite.com/images/single session.png">
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/19/Fiddler保存会话（请求）/"/>
+
+  <title> Fiddler保存会话（请求） | HeyNiu </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">HeyNiu</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">HeyNiu</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Fiddler保存会话（请求）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/19/Fiddler保存会话（请求）/" class="article-date">
-  <time datetime="2016-08-19T07:30:49.719Z" itemprop="datePublished">2016-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-        <h2 id="Fiddler保存会话（请求）"><a href="#Fiddler保存会话（请求）" class="headerlink" title="Fiddler保存会话（请求）"></a>Fiddler保存会话（请求）</h2><blockquote>
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Fiddler保存会话（请求）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-19T15:30:49+08:00" content="2016-08-19">
+              2016-08-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
 <p><a href="https://www.telerik.com/download/fiddler" target="_blank" rel="external">Fiddler下载地址</a></p>
 </blockquote>
 <h3 id="为什么要保存请求？"><a href="#为什么要保存请求？" class="headerlink" title="为什么要保存请求？"></a>为什么要保存请求？</h3><p>做这件事最重要的目的之一就是，最近我需要实现一个简单的验证服务器接口正确性的这么一个测试工具（脚本），顺便把这（保存会话）记录下来分享给大家。</p>
 <p><strong>有时间我会把我初步的想法整理好分享出来，大家一起来探讨它的可行性，它不一定适用你们的业务，但是非常适合我项目的业务。虽然它也可能难产，但是我想尽力去做、去完成，也算巩固一下自己的知识，应用到项目中去。</strong></p>
 <h3 id="保存单个请求"><a href="#保存单个请求" class="headerlink" title="保存单个请求"></a>保存单个请求</h3><p>选中某个请求，右键就能看到菜单中的Save</p>
-<p><img src="./single session.png" alt="单个请求"></p>
+<p><img src="/images/single session.png" alt="单个请求"></p>
 <ul>
 <li>Selected Sessions<ul>
 <li>in ArchiveZIP  保存为saz文件，其实就是一个zip格式文件</li>
@@ -118,26 +319,20 @@ Fiddler下载地址
 <h4 id="打开保存的请求文件"><a href="#打开保存的请求文件" class="headerlink" title="打开保存的请求文件"></a>打开保存的请求文件</h4><ul>
 <li>POST类型</li>
 </ul>
-<p><img src="./post.png" alt="POST"></p>
+<p><img src="/images/post.png" alt="POST"></p>
 <ul>
 <li>GET类型</li>
 </ul>
-<p><img src="./get.png" alt="GET"></p>
+<p><img src="/images/get.png" alt="GET"></p>
 <h4 id="乱码的解决方法"><a href="#乱码的解决方法" class="headerlink" title="乱码的解决方法"></a>乱码的解决方法</h4><p>相信细心的你也注意到了，前面<strong>POST</strong>类型的请求，<strong>Response body</strong>是乱码，这并不是我们希望看到的。那样怎么做呢？下面贴张图，你就秒懂了。</p>
-<p><img src="./decode.png" alt="Decode"></p>
+<p><img src="/images/decode.png" alt="Decode"></p>
 <p>没错，就是Response body Fiddler默认采用了GZIP压缩，只要我们勾选<strong>None</strong>，再导出就不是乱码了</p>
-<p><img src="./not decode.png" alt="Not decode"></p>
+<p><img src="/images/not decode.png" alt="Not decode"></p>
 <h3 id="保存所有请求"><a href="#保存所有请求" class="headerlink" title="保存所有请求"></a>保存所有请求</h3><p>菜单File &gt;&gt; Save &gt;&gt; All Sessions，文件将以saz的形式保存下来（实际就是一个ZIP文件，也可以加密保存）</p>
 <blockquote>
-<p>SAZ是一种以.SAZ为后缀的文件格式。SAZ是Session Archive Zip的缩写。 SAZ文件用于保存HTTP请求的信息。 在<a href="http://baike.baidu.com/view/868685.htm" target="_blank" rel="external">Fiddler</a>软件使用SAZ格式用来保存和读取HTTP请求信息。</p>
-<p>_index.htm ： 一个可选文件，便于用户直接阅读。这个文件在SAZ文件被加载时不会被处理，仅仅用于手工检查。</p>
-<p>raw文件夹：包含所有的记录了网络Sesison信息的文件。</p>
-<p>在raw文件夹内，对于每一个网络Sesison，会有三个文件：</p>
-<p>sessid#_c.txt：包含客户端请求</p>
-<p>sessid#_s.txt ： 包含服务器端请求</p>
-<p>sessid#_m.txt：包含一些元数据，比如：Session标志位，socket重用信息，等等。</p>
+<p><a href="http://baike.baidu.com/link?url=z5iex_WKRyQvIgoECRf5SonDbsBIwuHPIqMaNflV69SgA6RSfxuzKHfBzEe4a08oZIwzkw-WmwN5hxDJls-Dr_" target="_blank" rel="external">SAZ格式介绍</a></p>
 </blockquote>
-<p><img src="./save all sessions.png" alt="Save All Sessions"></p>
+<p><img src="/images/save all sessions.png" alt="Save All Sessions"></p>
 <h3 id="自动保存请求的猜想"><a href="#自动保存请求的猜想" class="headerlink" title="自动保存请求的猜想"></a>自动保存请求的猜想</h3><ul>
 <li>过滤掉无关的请求，只关注自己想要的请求</li>
 <li>利用Fiddler的Customize Rules实现过滤（也可利用<strong>Filters</strong>功能实现过滤 &gt;&gt; 简便、快捷），自动保存</li>
@@ -148,7 +343,7 @@ Fiddler下载地址
 </blockquote>
 <p>经过一上午的踩坑，终于把自动保存功能实现了，下面分享给大家。</p>
 <p>先来看一张自动保存的请求片段</p>
-<p><img src="./session.png" alt="Session"></p>
+<p><img src="/images/session.png" alt="Session"></p>
 <p>重点来了，下面是实现的js代码</p>
 <p><strong>操作步骤</strong></p>
 <ul>
@@ -165,99 +360,249 @@ Fiddler下载地址
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/19/Fiddler保存会话（请求）/" data-id="cis1gfg1p00006suicpnj2cgf" class="article-share-link">Partager</a>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
       
       
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2016/08/19/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
+  </article>
 
-  
-</article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    <div class="post-spread">
+      
     </div>
   </div>
 
 
-  
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
-    <div class="widget">
-      <ul>
+  </div>
+
+
+        </div>
         
-          <li>
-            <a href="/2016/08/19/Fiddler保存会话（请求）/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/08/19/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-  
-</aside>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="HeyNiu" />
+          <p class="site-author-name" itemprop="name">HeyNiu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要保存请求？"><span class="nav-number">1.</span> <span class="nav-text">为什么要保存请求？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存单个请求"><span class="nav-number">2.</span> <span class="nav-text">保存单个请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#打开保存的请求文件"><span class="nav-number">2.1.</span> <span class="nav-text">打开保存的请求文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#乱码的解决方法"><span class="nav-number">2.2.</span> <span class="nav-text">乱码的解决方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存所有请求"><span class="nav-number">3.</span> <span class="nav-text">保存所有请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动保存请求的猜想"><span class="nav-number">4.</span> <span class="nav-text">自动保存请求的猜想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动保存已实现"><span class="nav-number">5.</span> <span class="nav-text">自动保存已实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 HeyNiu<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HeyNiu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  </div>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
